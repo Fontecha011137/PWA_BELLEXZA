@@ -1,0 +1,94 @@
+body{
+    font-family: Arial;
+    margin:0;
+    background:#f49696;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+/* header */
+
+header{
+    background:#f49696;
+    color:rgb(107, 6, 97);
+    text-align:center;
+    padding:20px;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+
+header a{
+    color: rgb(230, 205, 205);
+    font-size: 15px;
+}
+
+
+
+.logo{
+    width:180px;
+}
+
+/* menu */
+
+nav{
+    background:#a50783;
+    display:flex;
+    justify-content:center;
+}
+
+nav a{
+    color:white;
+    padding:15px;
+    text-decoration:none;
+}
+
+nav a:hover{
+    background:#555;
+}
+
+/* contenido */
+
+.contenedor{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+    flex:1;
+}
+
+.card{
+    background:rgb(238, 202, 202);
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+button{
+    background:#ff4081;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+}
+button:hover{
+    background-color: #a50783;
+}
+
+/* footer */
+
+footer{
+    background:#a50783;
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+/*mantiene la imagen dentro de la card*/
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}

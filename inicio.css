@@ -1,0 +1,160 @@
+/* ===== ESTILOS GENERALES ===== */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background-color:#f49696;
+}
+
+
+/* ===== HEADER ===== */
+
+header{
+padding:40px;
+text-align:center;
+background-color:#da4e94;
+}
+
+header h1{
+font-size:36px;
+margin-top:10px;
+margin-bottom:15px;
+}
+
+header p{
+font-size:18px;
+margin-bottom:20px;
+}
+
+
+/* ===== LOGO ===== */
+
+.logo{
+width:150px;
+height:150px;
+object-fit:cover;
+}
+
+
+/* ===== CARRUSEL ===== */
+
+#carouselServicios{
+max-width:600px;
+margin:auto;
+background-color:#ffc0cb;
+padding:30px;
+border-radius:15px;
+}
+
+
+/* ===== IMAGENES ===== */
+
+.carrusel-img{
+width:100%;
+max-width:400px;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+display:block;
+margin:auto;
+}
+
+
+/* ===== TEXTO ===== */
+
+.servicio-texto{
+max-width:400px;
+margin:15px auto;
+background:rgba(0,0,0,0.6);
+color:white;
+padding:10px;
+border-radius:8px;
+text-align:center;
+}
+/*color del botnes de header*/
+.btn-primary{
+background-color:#e6008d;
+border-color:#e6008d;
+}
+
+.btn-primary:hover{
+background-color:#c40078;
+border-color:#c40078;
+}
+
+/* ===== BOTONES ===== */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+width:40px;
+height:40px;
+}
+
+
+/* ===== FOOTER ===== */
+
+footer{
+height:60px;
+font-size:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#de4793;
+color:white;
+}
+
+
+/* ========================= */
+/* 📱 RESPONSIVE */
+/* ========================= */
+
+@media (max-width:768px){
+
+header h1{
+font-size:28px;
+}
+
+header p{
+font-size:16px;
+}
+
+.logo{
+width:120px;
+height:120px;
+}
+
+.carrusel-img{
+height:180px;
+}
+
+.servicio-texto{
+font-size:14px;
+}
+
+}
+
+
+@media (max-width:480px){
+
+header{
+padding:25px;
+}
+
+header h1{
+font-size:24px;
+}
+
+.logo{
+width:100px;
+height:100px;
+}
+
+#carouselServicios{
+padding:20px;
+}
+
+.carrusel-img{
+height:160px;
+}
+
+}
