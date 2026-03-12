@@ -1,0 +1,116 @@
+body{
+font-family: Arial;
+background:#f49696;
+margin:0;
+}
+header{
+    background:#da4e94;
+    color:rgb(107, 6, 97);
+    text-align:center;
+    padding:20px;
+    text-decoration: none;
+}
+.logo{
+width:150px;
+height:150px;
+object-fit:cover;
+}
+
+
+
+.titulo{
+text-align:center;
+margin-top:30px;
+color:#6b0661;
+}
+
+.servicios{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+.servicio{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:white;
+margin:12px 0;
+padding:12px 15px;
+border-radius:20px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.nombre{
+font-weight:bold;
+}
+
+.precio{
+color:#444;
+}
+
+.btn-agendar{
+background:#ff4081;
+color:white;
+padding:7px 14px;
+border-radius:10px;
+text-decoration:none;
+font-size:14px;
+}
+
+.btn-agendar:hover{
+background:#a50783;
+}
+
+button{
+background:#ff4081;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+margin-top:10px;
+}
+
+button:hover{
+background:#a50783;
+}
+
+/*color del botnes de header*/
+.btn-primary{
+background-color:#e6008d;
+border-color:#e6008d;
+color:white;
+}
+
+.btn-primary:hover{
+background-color:#c40078;
+border-color:#c40078;
+color:white;
+}
+
+/* cuando haces click */
+.btn-primary:active{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+}
+
+/* cuando queda seleccionado */
+.btn-primary:focus,
+.btn-primary:focus-visible{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+box-shadow:none !important;
+outline:none !important;
+}
+
+footer{
+height:60px;
+font-size:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#de4793;
+color:white;
+}

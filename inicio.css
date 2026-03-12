@@ -75,13 +75,29 @@ text-align:center;
 .btn-primary{
 background-color:#e6008d;
 border-color:#e6008d;
+color:white;
 }
 
 .btn-primary:hover{
 background-color:#c40078;
 border-color:#c40078;
+color:white;
 }
 
+/* cuando haces click */
+.btn-primary:active{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+}
+
+/* cuando queda seleccionado */
+.btn-primary:focus,
+.btn-primary:focus-visible{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+box-shadow:none !important;
+outline:none !important;
+}
 /* ===== BOTONES ===== */
 
 .carousel-control-prev-icon,

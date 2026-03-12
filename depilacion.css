@@ -1,0 +1,129 @@
+body{
+font-family: Arial;
+background:#f49696;
+margin:0;
+}
+
+header{
+background:#da4e94;
+color:rgb(107, 6, 97);
+text-align:center;
+padding:20px;
+}
+
+.logo{
+width:150px;
+height:150px;
+object-fit:cover;
+}
+
+.titulo{
+text-align:center;
+margin-top:30px;
+color:#6b0661;
+}
+
+/* contenedor principal */
+.servicios{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+/* tarjeta de servicio */
+.servicio{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:white;
+margin:12px 0;
+padding:12px 15px;
+border-radius:20px;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.nombre{
+font-weight:bold;
+}
+
+.precio{
+color:#444;
+}
+
+/* botón agendar */
+.btn-agendar{
+background:#ff4081;
+color:white;
+padding:7px 14px;
+border-radius:10px;
+text-decoration:none;
+font-size:14px;
+border:none;
+cursor:pointer;
+}
+
+.btn-agendar:hover{
+background:#a50783;
+}
+
+/* caja especial henna */
+.henna-box{
+background:#dba7d4;
+padding:20px;
+border-radius:25px;
+text-align:center;
+margin:20px 0;
+box-shadow:0 3px 8px rgba(0,0,0,0.2);
+}
+
+.henna-box h3{
+margin:0;
+color:#6b0661;
+}
+
+.henna-box p{
+font-size:18px;
+font-weight:bold;
+}
+
+/* botones del menú */
+.btn-primary{
+background-color:#e6008d;
+border-color:#e6008d;
+color:white;
+}
+
+.btn-primary:hover{
+background-color:#c40078;
+border-color:#c40078;
+color:white;
+}
+
+.btn-primary:active{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+}
+
+.btn-primary:focus,
+.btn-primary:focus-visible{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+box-shadow:none !important;
+outline:none !important;
+}
+
+/* sección combos */
+.combos{
+margin-top:30px;
+}
+
+footer{
+height:60px;
+font-size:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#de4793;
+color:white;
+margin-top:30px;
+}

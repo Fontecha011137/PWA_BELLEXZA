@@ -25,8 +25,6 @@ header a{
     font-size: 15px;
 }
 
-
-
 .logo{
     width:180px;
 }
@@ -87,7 +85,7 @@ footer{
 }
 /*mantiene la imagen dentro de la card*/
 .card img{
-width:100%;
+width:50%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
