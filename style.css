@@ -7,29 +7,52 @@ body{
     min-height:100vh;
 }
 
-/* header */
+/* HEADER */
 
 header{
     background:#f49696;
     color:rgb(107, 6, 97);
-    text-align:center;
-    padding:20px;
-    text-decoration: none;
-}
-a{
-    text-decoration: none;
+    display:flex;
+    align-items:center;
+    padding:20px 80px;  /* antes era 40px */
 }
 
-header a{
-    color: rgb(230, 205, 205);
-    font-size: 15px;
+.logo-titulo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-titulo h1{
+    margin:0;
 }
 
 .logo{
-    width:180px;
+    width:140px; /* reducido para que el header no quede tan grande */
 }
 
-/* menu */
+/* BOTONES HEADER */
+
+.menu-header{
+    display:flex;
+    gap:10px;
+    margin-left:auto;
+}
+
+.menu-header button{
+    background:#ff4081;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.menu-header button:hover{
+    background:#a50783;
+}
+
+/* MENU */
 
 nav{
     background:#a50783;
@@ -47,7 +70,7 @@ nav a:hover{
     background:#555;
 }
 
-/* contenido */
+/* CONTENIDO */
 
 .contenedor{
     display:grid;
@@ -64,29 +87,33 @@ nav a:hover{
     text-align:center;
 }
 
-button{
+.card img{
+    width:70%;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* BOTONES DE LAS CARDS */
+
+.card button{
     background:#ff4081;
     color:white;
     border:none;
     padding:10px 20px;
     border-radius:5px;
-}
-button:hover{
-    background-color: #a50783;
+    cursor:pointer;
 }
 
-/* footer */
+.card button:hover{
+    background:#a50783;
+}
+
+/* FOOTER */
 
 footer{
     background:#a50783;
     color:white;
     text-align:center;
     padding:10px;
-}
-/*mantiene la imagen dentro de la card*/
-.card img{
-width:50%;
-height:200px;
-object-fit:cover;
-border-radius:10px;
 }
