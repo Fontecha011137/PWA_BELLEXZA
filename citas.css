@@ -51,12 +51,16 @@ color:#6b0661;
 /* calendario */
 
 .contenedor-calendario{
-max-width:900px;
-margin:auto;
+max-width:650px;
+margin:30px auto;
 background:white;
 padding:20px;
 border-radius:20px;
 box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+#calendar{
+max-width:600px;
+margin:auto;
 }
 
 /* botones */
@@ -65,11 +69,16 @@ box-shadow:0 3px 10px rgba(0,0,0,0.2);
 background-color:#e6008d;
 border-color:#e6008d;
 color:white;
+text-decoration:none;
+padding:8px 16px;
+border-radius:8px;
+font-size:14px;
 }
 
 .btn-primary:hover{
 background-color:#c40078;
 border-color:#c40078;
+color:white;
 }
 
 /* footer */
