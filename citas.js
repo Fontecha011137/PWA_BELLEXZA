@@ -11,7 +11,11 @@ locale: 'es',
 headerToolbar: {
 left: 'prev,next today',
 center: 'title',
-right: 'dayGridMonth,timeGridWeek,timeGridDay'
+right: ''
+},
+
+footerToolbar: {
+center: 'dayGridMonth,timeGridWeek,timeGridDay'
 },
 
 events: [
