@@ -93,3 +93,16 @@ background:#de4793;
 color:white;
 margin-top:30px;
 }
+@media (max-width: 576px){
+  .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .fc-button-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+}
