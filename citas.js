@@ -8,6 +8,12 @@ initialView: 'dayGridMonth',
 
 locale: 'es',
 
+headerToolbar: {
+left: 'prev,next today',
+center: 'title',
+right: 'dayGridMonth,timeGridWeek,timeGridDay'
+},
+
 events: [
 {
 title: 'Depilación cejas - Ana',
