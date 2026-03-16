@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f49696;
+  margin: 0;
+}
+
+.logo {
+  object-fit: cover;
+}
+
+h2 {
+  color: #6b0661;
+}
+
+p {
+  color: #4b0036;
+}
