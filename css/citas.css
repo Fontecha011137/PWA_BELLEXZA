@@ -80,6 +80,13 @@ background-color:#c40078;
 border-color:#c40078;
 color:white;
 }
+.btn-primary:focus,
+.btn-primary:focus-visible{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+box-shadow:none !important;
+outline:none !important;
+}
 
 /* footer */
 
