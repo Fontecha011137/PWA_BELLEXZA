@@ -1,0 +1,55 @@
+body{
+font-family: Arial;
+background:#f49696;
+margin:0;
+}
+
+header{
+background:#da4e94;
+color:rgb(107, 6, 97);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+}
+.header-izq{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.texto-header h1{
+margin:0;
+}
+
+.texto-header p{
+margin:0;
+}
+
+.header-der{
+display:flex;
+gap:15px;
+}
+
+.logo{
+width:150px;
+height:150px;
+object-fit:cover;
+}
+.btn-primary{
+background-color:#e6008d;
+border-color:#e6008d;
+color:white;
+}
+
+.btn-primary:hover{
+background-color:#c40078;
+border-color:#c40078;
+color:white;
+}
+
+/* cuando haces click */
+.btn-primary:active{
+background-color:#c40078 !important;
+border-color:#c40078 !important;
+}
