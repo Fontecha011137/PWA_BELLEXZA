@@ -149,3 +149,57 @@ background:#de4793;
 color:white;
 margin-top:30px;
 }
+
+/* ===== RESPONSIVE CELULAR ===== */
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    header{
+        flex-direction: column;
+        text-align: center;
+        padding:20px;
+    }
+
+    .header-izq{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-der{
+        margin-top:15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .logo{
+        width:120px;
+        height:120px;
+    }
+
+    .texto-header h1{
+        font-size:22px;
+    }
+
+    .texto-header p{
+        font-size:14px;
+    }
+
+    /* SERVICIOS (muy importante en móvil) */
+    .servicio{
+        flex-direction: column;
+        gap:8px;
+        text-align: center;
+    }
+
+    /* BOTONES */
+    .btn-agendar{
+        width:100%;
+    }
+
+    /* HENNA BOX */
+    .henna-box{
+        padding:15px;
+    }
+}

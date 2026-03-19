@@ -1,115 +1,165 @@
+/* ===== BASE ===== */
+
 body{
-font-family: Arial;
-background:#f49696;
-margin:0;
+    font-family: Arial;
+    background:#f49696;
+    margin:0;
+
+    /* 👇 esto hace que el footer baje */
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
 }
 
-/* header */
+/* ===== HEADER ===== */
 
 header{
-background:#da4e94;
-color:rgb(107,6,97);
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
+    background:#da4e94;
+    color:rgb(107,6,97);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
 }
 
 .header-izq{
-display:flex;
-align-items:center;
-gap:20px;
-}
-
-.texto-header h1{
-margin:0;
-}
-
-.texto-header p{
-margin:0;
+    display:flex;
+    align-items:center;
+    gap:20px;
 }
 
 .header-der{
-display:flex;
-gap:15px;
+    display:flex;
+    gap:15px;
+}
+
+.texto-header h1{
+    margin:0;
+}
+
+.texto-header p{
+    margin:0;
 }
 
 .logo{
-width:80px;
-height:80px;
-object-fit:cover;
+    width:80px;
+    height:80px;
+    object-fit:cover;
 }
 
-/* titulo */
+/* ===== CONTENIDO ===== */
 
 .titulo{
-text-align:center;
-margin-top:30px;
-color:#6b0661;
+    text-align:center;
+    margin-top:30px;
+    color:#6b0661;
 }
-
-/* calendario */
 
 .contenedor-calendario{
-max-width:650px;
-margin:30px auto;
-background:white;
-padding:20px;
-border-radius:20px;
-box-shadow:0 3px 10px rgba(0,0,0,0.2);
-}
-#calendar{
-max-width:600px;
-margin:auto;
+    max-width:650px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+
+    /* 👇 empuja el footer hacia abajo */
+    flex:1;
 }
 
-/* botones */
+#calendar{
+    max-width:600px;
+    margin:auto;
+}
+
+/* ===== BOTONES ===== */
 
 .btn-primary{
-background-color:#e6008d;
-border-color:#e6008d;
-color:white;
-text-decoration:none;
-padding:8px 16px;
-border-radius:8px;
-font-size:14px;
+    background-color:#e6008d;
+    border-color:#e6008d;
+    color:white;
+    text-decoration:none;
+    padding:8px 16px;
+    border-radius:8px;
+    font-size:14px;
 }
 
 .btn-primary:hover{
-background-color:#c40078;
-border-color:#c40078;
-color:white;
+    background-color:#c40078;
+    border-color:#c40078;
+    color:white;
 }
+
 .btn-primary:focus,
 .btn-primary:focus-visible{
-background-color:#c40078 !important;
-border-color:#c40078 !important;
-box-shadow:none !important;
-outline:none !important;
+    background-color:#c40078 !important;
+    border-color:#c40078 !important;
+    box-shadow:none !important;
+    outline:none !important;
 }
 
-/* footer */
+/* ===== FOOTER ===== */
 
 footer{
-height:60px;
-font-size:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#de4793;
-color:white;
-margin-top:30px;
+    height:60px;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#de4793;
+    color:white;
 }
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px){
+
+    /* HEADER */
+    header{
+        flex-direction: column;
+        text-align: center;
+        padding:20px;
+    }
+
+    .header-izq{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-der{
+        margin-top:15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .logo{
+        width:70px;
+        height:70px;
+    }
+
+    .texto-header h1{
+        font-size:22px;
+    }
+
+    .texto-header p{
+        font-size:14px;
+    }
+}
+
 @media (max-width: 576px){
-  .fc-toolbar-chunk {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .fc-button-group {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-  }
+
+    /* FULLCALENDAR */
+    .fc-toolbar-chunk{
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .fc-button-group{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        gap:5px;
+    }
 }

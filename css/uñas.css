@@ -134,3 +134,39 @@ justify-content:center;
 background:#de4793;
 color:white;
 }
+
+/* ===== RESPONSIVE HEADER CELULAR ===== */
+
+@media (max-width: 768px){
+
+    header{
+        flex-direction: column;
+        text-align: center;
+        padding:20px;
+    }
+
+    .header-izq{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-der{
+        margin-top:15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .logo{
+        width:120px;
+        height:120px;
+    }
+
+    .texto-header h1{
+        font-size:22px;
+    }
+
+    .texto-header p{
+        font-size:14px;
+    }
+}
