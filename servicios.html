@@ -7,6 +7,7 @@
 
 <title>Belleza</title>
 
+<!-- ================= ESTILOS ================= -->
 <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -16,43 +17,82 @@
 <!-- ================= HEADER ================= -->
 <header class="header">
 
-<div class="logo-titulo">
-<img src="icon/logo belleza 2.png" class="logo">
-<h1>Belleza</h1>
-</div>
+  <!-- Logo y nombre -->
+  <div class="logo-titulo">
+    <img src="icon/logo belleza 2.png" class="logo">
+    <h1>Belleza</h1>
+  </div>
 
-<div class="menu-header">
-<button onclick="location.href='registro.html'">Registrate</button>
-<button onclick="location.href='login.html'">Login</button>
-</div>
+  <!-- Botones usuario -->
+  <div class="menu-header">
+
+    <!-- Botón registrarse -->
+    <button id="btnRegistro" onclick="location.href='registro.html'">
+      Registrate
+    </button>
+
+    <!-- Botón login -->
+    <button id="btnLogin" onclick="location.href='login.html'">
+      Login
+    </button>
+
+    <!-- Botón cerrar sesión (oculto al inicio) -->
+    <button id="btnLogout" style="display:none;">
+      Cerrar sesión
+    </button>
+
+  </div>
 
 </header>
 
 <!-- ================= NAV ================= -->
 <nav>
-    <a href="index.html">Inicio</a>
-    <a href="somos.html">Quienes Somos</a>
-    <a href="contacto.html">Contactanos</a>
+  <a href="index.html">Inicio</a>
+  <a href="somos.html">Quienes Somos</a>
+  <a href="contacto.html">Contactanos</a>
 </nav>
 
 <!-- ================= SERVICIOS ================= -->
-<section class="contenedor" id="contenedorServicios">
+<section class="contenedor">
+
+  <!-- Servicio uñas -->
+  <div class="card">
+    <h2>Uñas</h2>
+    <p>Servicios completos de uñas</p>
+    <button onclick="irServicio('uñas.html')">Ver</button>
+  </div>
+
+  <!-- Servicio depilación -->
+  <div class="card">
+    <h2>Depilación</h2>
+    <p>Servicios de depilación</p>
+    <button onclick="irServicio('depilacion.html')">Ver</button>
+  </div>
+
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
-    <p>© 2026 Belleza</p>
+  <p>© 2026 Belleza</p>
 </footer>
 
 <!-- ================= FIREBASE ================= -->
 <script type="module">
 
-/* ================= IMPORTACIONES ================= */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+/* ======================================================
+   🔥 DEBUG → Esto nos permite saber si el script carga
+====================================================== */
+console.log("🔥 SERVICIOS FUNCIONANDO");
 
-/* ================= CONFIG ================= */
+/* ======================================================
+   IMPORTACIONES DE FIREBASE
+====================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+/* ======================================================
+   CONFIGURACIÓN DEL PROYECTO FIREBASE
+====================================================== */
 const firebaseConfig = {
   apiKey: "AIzaSyC7Q6Kvn0klC_OIByWIWe4-o7NiJ1D0SLQ",
   authDomain: "pwabelleza.firebaseapp.com",
@@ -62,64 +102,63 @@ const firebaseConfig = {
   appId: "1:36813965033:web:9b760c75eade1e2b079278"
 };
 
-/* ================= INIT ================= */
+/* ======================================================
+   INICIALIZACIÓN
+====================================================== */
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 
-let usuarioActual = null;
+/* ======================================================
+   ELEMENTOS DEL DOM
+====================================================== */
+const btnLogin = document.getElementById("btnLogin");
+const btnRegistro = document.getElementById("btnRegistro");
+const btnLogout = document.getElementById("btnLogout");
 
-/* ================= DETECTAR USUARIO ================= */
+/* ======================================================
+   DETECTAR ESTADO DEL USUARIO
+   Se ejecuta automáticamente si el usuario está logueado
+====================================================== */
 onAuthStateChanged(auth, (user) => {
-  usuarioActual = user;
-});
 
-/* ================= CARGAR SERVICIOS ================= */
-const contenedor = document.getElementById("contenedorServicios");
+  console.log("Usuario en servicios:", user);
 
-async function cargarServicios() {
+  if (user) {
+    // Usuario autenticado
 
-  const querySnapshot = await getDocs(collection(db, "servicios"));
+    btnLogin.style.display = "none";
+    btnRegistro.style.display = "none";
+    btnLogout.style.display = "inline-block";
 
-  contenedor.innerHTML = "";
+  } else {
+    // Usuario NO autenticado
 
-  querySnapshot.forEach((doc) => {
-
-    const servicio = doc.data();
-
-    const card = document.createElement("div");
-    card.classList.add("card");
-
-    card.innerHTML = `
-      <h2>${servicio.nombre}</h2>
-      <p>${servicio.descripcion}</p>
-      <p><strong>Precio:</strong> $${servicio.precio}</p>
-
-      <button onclick="agendar('${servicio.nombre}')">
-        Agendar
-      </button>
-    `;
-
-    contenedor.appendChild(card);
-
-  });
-
-}
-
-/* ================= AGENDAR ================= */
-window.agendar = (servicio) => {
-
-  if (!usuarioActual) {
-    alert("⚠️ Debes iniciar sesión para agendar");
-    window.location.href = "login.html";
-    return;
+    btnLogin.style.display = "inline-block";
+    btnRegistro.style.display = "inline-block";
+    btnLogout.style.display = "none";
   }
 
-  window.location.href = `citas.html?servicio=${servicio}`;
-};
+});
 
-/* ================= INICIAR ================= */
-cargarServicios();
+/* ======================================================
+   CERRAR SESIÓN
+====================================================== */
+btnLogout.addEventListener("click", async () => {
+
+  await signOut(auth);
+
+  alert("Sesión cerrada");
+
+  location.reload();
+
+});
+
+/* ======================================================
+   REDIRECCIÓN A SERVICIOS
+====================================================== */
+window.irServicio = (pagina) => {
+  window.location.href = pagina;
+};
 
 </script>
 

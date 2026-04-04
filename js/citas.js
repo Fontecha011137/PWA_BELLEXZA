@@ -104,22 +104,25 @@ form.addEventListener("submit", async (e) => {
     /* ======================================================
        WHATSAPP
     ====================================================== */
-    const mensaje = `Hola 👋 tu cita fue agendada:
-Servicio: ${servicio}
-Fecha: ${fecha}
-Hora: ${hora}`;
+    const mensaje = `Hola, quiero agendar una cita de ${servicio} el ${fecha} a las ${hora} en ${direccion}`;
 
-    const url = `https://wa.me/573227257705=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/573227257705?text=${encodeURIComponent(mensaje)}`;
+
     window.open(url, "_blank");
 
     /* ======================================================
        GOOGLE CALENDAR
     ====================================================== */
-    const inicio = fecha + "T" + hora;
+    const inicio = fecha + "T" + hora + ":00";
+    const fin = fecha + "T" + (parseInt(hora.split(":")[0]) + 1) + ":00";
 
-    const calendarURL = `https://www.google.com/calendar/render?action=TEMPLATE&text=${servicio}&dates=${inicio}/${inicio}&details=Cita de belleza`;
+    const urlCalendar = `https://calendar.google.com/calendar/render?action=TEMPLATE
+    &text=Cita Belleza - ${servicio}
+    &dates=${inicio.replace(/[-:]/g, "")}/${fin.replace(/[-:]/g, "")}
+    &details=Cita de ${servicio}
+    &location=${direccion}`;
 
-    window.open(calendarURL, "_blank");
+    window.open(urlCalendar, "_blank");
 
     form.reset();
 
