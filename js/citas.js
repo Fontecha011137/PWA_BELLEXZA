@@ -1,62 +1,133 @@
-//// CONFIGURACIÓN DE FIREBASE (usar tu propia configuración) ////
+/* ======================================================
+   IMPORTACIONES FIREBASE
+====================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  getDocs, 
+  query, 
+  where 
+} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+/* ======================================================
+   CONFIGURACIÓN
+====================================================== */
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "XXXXXXX",
-  appId: "XXXXXXXX"
+  apiKey: "AIzaSyC7Q6Kvn0klC_OIByWIWe4-o7NiJ1D0SLQ",
+  authDomain: "pwabelleza.firebaseapp.com",
+  projectId: "pwabelleza",
+  storageBucket: "pwabelleza.firebasestorage.app",
+  messagingSenderId: "36813965033",
+  appId: "1:36813965033:web:9b760c75eade1e2b079278"
 };
 
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+/* ======================================================
+   INICIALIZAR
+====================================================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-//// LOGOUT - BOTÓN SALIR ////
-const logoutBtn = document.getElementById('logout');
-
-logoutBtn.addEventListener('click', () => {
-  auth.signOut()
-    .then(() => {
-      alert('Sesión cerrada con éxito');
-      window.location.href = "login.html"; // Redirige al login
-    })
-    .catch(error => {
-      console.error('Error al cerrar sesión:', error);
-      alert('Error al cerrar sesión. Intenta nuevamente.');
-    });
-});
-
-//// FULLCALENDAR - CALENDARIO DE CITAS ////
-document.addEventListener('DOMContentLoaded', function() {
-  const calendarEl = document.getElementById('calendar');
-
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    locale: 'es',
-
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: '' // Botones de vista se moverán al footer para móviles
-    },
-
-    footerToolbar: {
-      center: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-
-    
-  });
-
-  calendar.render();
-});
-
-//// VERIFICAR USUARIO LOGUEADO ////
-auth.onAuthStateChanged(user => {
-  if(!user){
-    // Si no hay usuario logueado, redirigir al login
+/* ======================================================
+   BLOQUEAR SI NO ESTÁ LOGUEADO
+====================================================== */
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("⚠️ Debes iniciar sesión para agendar");
     window.location.href = "login.html";
-  } else {
-    console.log("Usuario logueado:", user.email);
   }
+});
+
+/* ======================================================
+   CAPTURAR SERVICIO DESDE URL
+====================================================== */
+const params = new URLSearchParams(window.location.search);
+const servicioURL = params.get("servicio");
+
+if (servicioURL) {
+  document.getElementById("servicio").value = servicioURL;
+}
+
+/* ======================================================
+   FORMULARIO
+====================================================== */
+const form = document.getElementById("formCita");
+
+form.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const servicio = document.getElementById("servicio").value;
+  const fecha = document.getElementById("fecha").value;
+  const hora = document.getElementById("hora").value;
+  const direccion = document.getElementById("direccion").value;
+
+  const user = auth.currentUser;
+
+  try {
+
+    /* ======================================================
+       VALIDAR HORARIO OCUPADO
+    ====================================================== */
+    const q = query(
+      collection(db, "citas"),
+      where("fecha", "==", fecha),
+      where("hora", "==", hora)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      alert("⚠️ Este horario ya está ocupado, elige otro");
+      return;
+    }
+
+    /* ======================================================
+       GUARDAR CITA
+    ====================================================== */
+    await addDoc(collection(db, "citas"), {
+      usuarioId: user.uid,
+      email: user.email,
+      servicio,
+      fecha,
+      hora,
+      direccion,
+      estado: "pendiente",
+      fechaCreacion: new Date()
+    });
+
+    alert("✅ Cita agendada correctamente");
+
+    /* ======================================================
+       WHATSAPP
+    ====================================================== */
+    const mensaje = `Hola 👋 tu cita fue agendada:
+Servicio: ${servicio}
+Fecha: ${fecha}
+Hora: ${hora}`;
+
+    const url = `https://wa.me/573227257705=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
+
+    /* ======================================================
+       GOOGLE CALENDAR
+    ====================================================== */
+    const inicio = fecha + "T" + hora;
+
+    const calendarURL = `https://www.google.com/calendar/render?action=TEMPLATE&text=${servicio}&dates=${inicio}/${inicio}&details=Cita de belleza`;
+
+    window.open(calendarURL, "_blank");
+
+    form.reset();
+
+  } catch (error) {
+
+    console.error(error);
+    alert("Error al agendar la cita");
+
+  }
+
 });

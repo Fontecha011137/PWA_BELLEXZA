@@ -5,7 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Servicios</title>
+<title>Servicios de Uñas</title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/uñas.css">
 
@@ -13,12 +14,13 @@
 
 <body>
     
+<!-- ================= HEADER ================= -->
 <header class="header">
 
 <div class="header-izq">
-<img src="icon/logo belleza 2.png" class="logo" alt="Logo Belleza">
+<img src="icon/logo belleza 2.png" class="logo">
 <div class="texto-header">
-<h1>Bienvenido a Belleza</h1>
+<h1>Servicios de Uñas</h1>
 <p>Descubre nuestros servicios diseñados para resaltar tu belleza.</p>
 </div>
 </div>
@@ -30,6 +32,7 @@
 
 </header>
 
+<!-- ================= SERVICIOS ================= -->
 <div class="container">
 
 <h2 class="text-center mb-4">Nuestros Servicios</h2>
@@ -41,65 +44,64 @@
 <div class="servicio">
 <span>Manicure básico</span>
 <span>$15.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Manicure básico')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Pedicure básico</span>
 <span>$38.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Pedicure básico')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Semi manos</span>
 <span>$35.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Semi manos')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Semi pies</span>
 <span>$45.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Semi pies')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Montaje acrílicas</span>
 <span>$70.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Montaje acrílicas')">Agendar</button>
 </div>
 
 </div>
-
 
 <div class="col-md-6">
 
 <div class="servicio">
 <span>Polygel</span>
 <span>$78.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Polygel')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Dipping</span>
 <span>$65.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Dipping')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Soft gel</span>
 <span>$60.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Soft gel')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Base rubber</span>
 <span>$58.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Base rubber')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Depilación en cera</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Depilación en cera')">Agendar</button>
 </div>
 
 </div>
@@ -107,11 +109,65 @@
 </div>
 
 </div>
+
+<!-- ================= FOOTER ================= -->
 <footer>
-
 <p>© 2026 Belleza</p>
-
 </footer>
+
+<!-- ================= FIREBASE ================= -->
+<script type="module">
+
+/* ======================================================
+   IMPORTACIONES FIREBASE
+====================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+/* ======================================================
+   CONFIGURACIÓN
+====================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyC7Q6Kvn0klC_OIByWIWe4-o7NiJ1D0SLQ",
+  authDomain: "pwabelleza.firebaseapp.com",
+  projectId: "pwabelleza",
+  storageBucket: "pwabelleza.firebasestorage.app",
+  messagingSenderId: "36813965033",
+  appId: "1:36813965033:web:9b760c75eade1e2b079278"
+};
+
+/* ======================================================
+   INICIALIZAR
+====================================================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+let usuarioActual = null;
+
+/* ======================================================
+   DETECTAR USUARIO
+====================================================== */
+onAuthStateChanged(auth, (user) => {
+  usuarioActual = user;
+});
+
+/* ======================================================
+   FUNCIÓN AGENDAR
+====================================================== */
+window.agendar = (servicio) => {
+
+  // 🔐 Validar login
+  if (!usuarioActual) {
+    alert("⚠️ Debes iniciar sesión para agendar");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // 🚀 Redirigir a citas
+  window.location.href = `citas.html?servicio=${servicio}`;
+};
+
+</script>
 
 </body>
 </html>

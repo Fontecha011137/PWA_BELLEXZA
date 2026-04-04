@@ -14,10 +14,11 @@
 
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="header">
 
 <div class="header-izq">
-<img src="icon/logo belleza 2.png" class="logo" alt="Logo Belleza">
+<img src="icon/logo belleza 2.png" class="logo">
 
 <div class="texto-header">
 <h1>Depilación en Cera</h1>
@@ -32,7 +33,7 @@
 
 </header>
 
-
+<!-- ================= SERVICIOS ================= -->
 <div class="container">
 
 <div class="row">
@@ -44,56 +45,55 @@
 <div class="servicio">
 <span>Boso</span>
 <span>$9.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Boso')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Cejas</span>
 <span>$11.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Cejas')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Axilas</span>
 <span>$17.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Axilas')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Media pierna</span>
 <span>$25.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Media pierna')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Pierna completa</span>
 <span>$45.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Pierna completa')">Agendar</button>
 </div>
 
 </div>
-
 
 <div class="col-md-6">
-
 
 <h3 class="titulo mt-4">Combos</h3>
 
 <div class="servicio">
 <span>Cejas + Boso</span>
 <span>$17.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Cejas + Boso')">Agendar</button>
 </div>
 
 <div class="servicio">
 <span>Cejas + Boso + Axilas</span>
 <span>$35.000</span>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Combo completo')">Agendar</button>
 </div>
+
 <div class="henna-box">
 <h4>Henna Cejas</h4>
 <p>$15.000</p>
-<button class="btn-agendar">Agendar</button>
+<button onclick="agendar('Henna Cejas')">Agendar</button>
 </div>
 
 </div>
@@ -102,11 +102,64 @@
 
 </div>
 
+<!-- ================= FOOTER ================= -->
 <footer>
-
 <p>© 2026 Belleza</p>
-
 </footer>
+
+<!-- ================= FIREBASE ================= -->
+<script type="module">
+
+/* ======================================================
+   IMPORTACIONES FIREBASE
+====================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+/* ======================================================
+   CONFIG
+====================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyC7Q6Kvn0klC_OIByWIWe4-o7NiJ1D0SLQ",
+  authDomain: "pwabelleza.firebaseapp.com",
+  projectId: "pwabelleza",
+  storageBucket: "pwabelleza.firebasestorage.app",
+  messagingSenderId: "36813965033",
+  appId: "1:36813965033:web:9b760c75eade1e2b079278"
+};
+
+/* ======================================================
+   INIT
+====================================================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+let usuarioActual = null;
+
+/* ======================================================
+   DETECTAR USUARIO
+====================================================== */
+onAuthStateChanged(auth, (user) => {
+  usuarioActual = user;
+});
+
+/* ======================================================
+   FUNCIÓN AGENDAR
+====================================================== */
+window.agendar = (servicio) => {
+
+  // 🔐 Validar login
+  if (!usuarioActual) {
+    alert("⚠️ Debes iniciar sesión para agendar");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // 🚀 Enviar servicio a citas
+  window.location.href = `citas.html?servicio=${servicio}`;
+};
+
+</script>
 
 </body>
 </html>

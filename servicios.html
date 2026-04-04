@@ -8,17 +8,17 @@
 <title>Belleza</title>
 
 <link rel="stylesheet" href="css/style.css">
-
 <link rel="manifest" href="manifest.json">
 
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="header">
 
 <div class="logo-titulo">
-<img src="icon/logo belleza 2.png" class="logo" alt="Logo">
+<img src="icon/logo belleza 2.png" class="logo">
 <h1>Belleza</h1>
 </div>
 
@@ -28,38 +28,101 @@
 </div>
 
 </header>
+
+<!-- ================= NAV ================= -->
 <nav>
     <a href="index.html">Inicio</a>
-     <a href="somos.html">Somos</a>
-    <a href="contacto.html">Contacto</a>
-   
-
+    <a href="somos.html">Quienes Somos</a>
+    <a href="contacto.html">Contactanos</a>
 </nav>
 
-<section class="contenedor">
-
-
-  <div class="card">
-    <img src="icon/decorado.jpg" alt="decorado">
-    <h2>Arreglo y decoracion de uñas</h2>
-    <p>Arreglo y decoracion de tus uñas naturales con diseños encantadores</p>
-   <button onclick="location.href='uñas.html'">Uñas</button>
-</div>
-
-<div class="card">
-    <img src="icon/depilacion.jpg" alt="depilacion">
-    <h2>Depilación con cera</h2>
-    <p>Eliminación con cera para una piel suave y limpia por más tiempo, realizada 
-        con cuidado y suavidad para mayor comodidad.</p>
-  <button onclick="location.href='depilacion.html'">Depilacion</button>
-</div>
-
-    
+<!-- ================= SERVICIOS ================= -->
+<section class="contenedor" id="contenedorServicios">
 </section>
 
+<!-- ================= FOOTER ================= -->
 <footer>
     <p>© 2026 Belleza</p>
 </footer>
+
+<!-- ================= FIREBASE ================= -->
+<script type="module">
+
+/* ================= IMPORTACIONES ================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+/* ================= CONFIG ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyC7Q6Kvn0klC_OIByWIWe4-o7NiJ1D0SLQ",
+  authDomain: "pwabelleza.firebaseapp.com",
+  projectId: "pwabelleza",
+  storageBucket: "pwabelleza.firebasestorage.app",
+  messagingSenderId: "36813965033",
+  appId: "1:36813965033:web:9b760c75eade1e2b079278"
+};
+
+/* ================= INIT ================= */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let usuarioActual = null;
+
+/* ================= DETECTAR USUARIO ================= */
+onAuthStateChanged(auth, (user) => {
+  usuarioActual = user;
+});
+
+/* ================= CARGAR SERVICIOS ================= */
+const contenedor = document.getElementById("contenedorServicios");
+
+async function cargarServicios() {
+
+  const querySnapshot = await getDocs(collection(db, "servicios"));
+
+  contenedor.innerHTML = "";
+
+  querySnapshot.forEach((doc) => {
+
+    const servicio = doc.data();
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.innerHTML = `
+      <h2>${servicio.nombre}</h2>
+      <p>${servicio.descripcion}</p>
+      <p><strong>Precio:</strong> $${servicio.precio}</p>
+
+      <button onclick="agendar('${servicio.nombre}')">
+        Agendar
+      </button>
+    `;
+
+    contenedor.appendChild(card);
+
+  });
+
+}
+
+/* ================= AGENDAR ================= */
+window.agendar = (servicio) => {
+
+  if (!usuarioActual) {
+    alert("⚠️ Debes iniciar sesión para agendar");
+    window.location.href = "login.html";
+    return;
+  }
+
+  window.location.href = `citas.html?servicio=${servicio}`;
+};
+
+/* ================= INICIAR ================= */
+cargarServicios();
+
+</script>
 
 </body>
 </html>
