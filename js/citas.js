@@ -112,19 +112,27 @@ form.addEventListener("submit", async (e) => {
 
     /* ======================================================
        GOOGLE CALENDAR
-    ====================================================== */
-    const inicio = fecha + "T" + hora + ":00";
-    const fin = fecha + "T" + (parseInt(hora.split(":")[0]) + 1) + ":00";
+// ================= GOOGLE CALENDAR =================
 
-    const urlCalendar = `https://calendar.google.com/calendar/render?action=TEMPLATE
-    &text=Cita Belleza - ${servicio}
-    &dates=${inicio.replace(/[-:]/g, "")}/${fin.replace(/[-:]/g, "")}
-    &details=Cita de ${servicio}
-    &location=${direccion}`;
+// Crear fechas
+const inicio = new Date(`${fecha}T${hora}`);
+const fin = new Date(inicio.getTime() + 60 * 60 * 1000);
 
-    window.open(urlCalendar, "_blank");
+// Formato correcto
+const formato = (f) => {
+  return f.toISOString().replace(/[-:]/g, "").split(".")[0];
+};
 
-    form.reset();
+const fechaInicio = formato(inicio);
+const fechaFin = formato(fin);
+
+// URL MEJORADA (clave)
+const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Cita Belleza - " + servicio)}&dates=${fechaInicio}/${fechaFin}&details=${encodeURIComponent("Servicio: " + servicio)}&location=${encodeURIComponent(direccion)}`;
+
+// Abrir formulario de evento
+window.open(url, "_blank");
+
+  
 
   } catch (error) {
 
