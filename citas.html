@@ -32,15 +32,9 @@
 
     <form id="formCita">
 
-      <!-- SERVICIO -->
+      <!-- SERVICIO (AUTOMÁTICO) -->
       <label>Servicio</label>
-      <select id="servicio" required>
-        <option value="">Selecciona</option>
-        <option value="Uñas">Uñas - $30.000</option>
-        <option value="Depilación">Depilación - $25.000</option>
-        <option value="Pestañas">Pestañas - $40.000</option>
-        <option value="Cejas">Cejas - $20.000</option>
-      </select>
+      <input type="text" id="servicio" readonly>
 
       <!-- FECHA -->
       <label>Fecha</label>
@@ -50,9 +44,11 @@
       <label>Hora</label>
       <input type="time" id="hora" required>
 
-      <!-- DIRECCIÓN -->
-      <label>Dirección</label>
-      <input type="text" id="direccion" required>
+      <!-- DIRECCIÓN DESDE FIREBASE -->
+      <label>Selecciona tu dirección</label>
+      <select id="direccion" required>
+        <option value="">Cargando direcciones...</option>
+      </select>
 
       <button type="submit">Agendar</button>
 
@@ -62,7 +58,7 @@
 
 </section>
 
-<!-- SCRIPT -->
+<!-- ================= SCRIPT ================= -->
 <script type="module" src="js/citas.js"></script>
 
 </body>

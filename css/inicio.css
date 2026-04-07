@@ -117,6 +117,10 @@ align-items:center;
 justify-content:center;
 background:#de4793;
 color:white;
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
 }
 
 

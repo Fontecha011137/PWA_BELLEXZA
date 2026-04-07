@@ -40,6 +40,9 @@
 <div class="col-md-4 text-center text-md-end">
 
 <a href="servicios.html" class="btn btn-primary">Servicios</a>
+<a href="citas.html" class="btn btn-primary" id="btnLogin">
+Citas
+</a>
 
 <a href="registro.html" class="btn btn-primary" id="btnRegistro">
 Registrate
@@ -139,6 +142,8 @@ const usuarioNombre = document.getElementById("usuarioNombre");
 const btnLogout = document.getElementById("btnLogout");
 const btnLogin = document.getElementById("btnLogin");
 const btnRegistro = document.getElementById("btnRegistro");
+const direccion1 = document.getElementById("direccion1").value;
+const direccion2 = document.getElementById("direccion2").value;
 
 /* ================= DETECTAR USUARIO ================= */
 onAuthStateChanged(auth, async (user) => {
