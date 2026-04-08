@@ -149,4 +149,7 @@ footer{
         width:120px;
         height:120px;
     }
+    footer{
+    position: relative;
+}
 }
