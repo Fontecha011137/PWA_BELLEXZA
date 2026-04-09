@@ -13,6 +13,8 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/inicio.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d6efd">
 
 </head>
 
@@ -40,17 +42,8 @@
 <div class="col-md-4 text-center text-md-end">
 
 <a href="servicios.html" class="btn btn-primary">Servicios</a>
-<a href="citas.html" class="btn btn-primary" id="btnLogin">
-Citas
-</a>
-
-<a href="registro.html" class="btn btn-primary" id="btnRegistro">
-Registrate
-</a>
-
-<a href="login.html" class="btn btn-primary" id="btnLogin">
-Login
-</a>
+<a href="registro.html" class="btn btn-primary" id="btnRegistro">Registrate</a>
+<a href="login.html" class="btn btn-primary" id="btnLogin">Login</a>
 
 <!-- 🔐 BOTÓN LOGOUT -->
 <button id="btnLogout" class="btn btn-danger" style="display:none;">
@@ -194,6 +187,13 @@ btnLogout.addEventListener("click", async () => {
 
 });
 
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('SW registrado'))
+    .catch(err => console.log('Error:', err));
+}
 </script>
 
 </body>
